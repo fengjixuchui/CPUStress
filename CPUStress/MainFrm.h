@@ -18,6 +18,7 @@ public:
 	
 	CMainFrame();
 
+	bool IsCPUSetsAvailable() const;
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual BOOL OnIdle();
 
@@ -48,6 +49,7 @@ public:
 		UPDATE_ELEMENT(ID_PRIORITY_ABOVENORMAL, UPDUI_MENUPOPUP)
 		UPDATE_ELEMENT(ID_PRIORITY_HIGHEST, UPDUI_MENUPOPUP)
 		UPDATE_ELEMENT(ID_PRIORITY_TIMECRITICAL, UPDUI_MENUPOPUP)
+		UPDATE_ELEMENT(ID_THREAD_SELECTEDCPUSETS, UPDUI_MENUPOPUP)
 
 		UPDATE_ELEMENT(0, UPDUI_STATUSBAR)
 		UPDATE_ELEMENT(1, UPDUI_STATUSBAR)
@@ -63,7 +65,11 @@ public:
 		COMMAND_ID_HANDLER(ID_VIEW_TOOLBAR, OnViewToolBar)
 		COMMAND_ID_HANDLER(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 		COMMAND_ID_HANDLER(ID_APP_ABOUT, OnAppAbout)
+		COMMAND_ID_HANDLER(ID_SYSTEM_CPUSETS, OnSystemCPUSets)
+		COMMAND_ID_HANDLER(ID_PROCESS_CPUSETS, OnProcessCPUSets)
 		COMMAND_ID_HANDLER(ID_OPTIONS_ALWAYSONTOP, OnAlwaysOnTop)
+		COMMAND_ID_HANDLER(ID_HELP_SYSTEMINFORMATION, OnSystemInfo)
+		COMMAND_ID_HANDLER(ID_SYSTEM_INFORMATION, OnSystemInfo)
 		CHAIN_MSG_MAP(CUpdateUI<CMainFrame>)
 		CHAIN_MSG_MAP(CFrameWindowImpl<CMainFrame>)
 		CHAIN_MSG_MAP_ALT_MEMBER(m_view, 2)
@@ -82,7 +88,10 @@ private:
 	LRESULT OnViewToolBar(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnViewStatusBar(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnAppAbout(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
+	LRESULT OnSystemCPUSets(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
+	LRESULT OnProcessCPUSets(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnAlwaysOnTop(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
+	LRESULT OnSystemInfo(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 
 	// Inherited via IMainFrame
 	BOOL ShowContextMenu(HMENU hMenu, POINT pt) override;

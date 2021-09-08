@@ -16,6 +16,7 @@ class Thread {
 public:
 	Thread();
 	Thread(HANDLE hThread, int index);
+
 	static std::shared_ptr<Thread> Create(ThreadCreateParams* params = nullptr);
 
 	DWORD GetId() const;
@@ -45,8 +46,11 @@ public:
 	void GetStackLimits(void*& start, void*& end) const;
 	int GetBasePriority() const;
 	int GetPriority() const;
+	bool GetCpuSet(std::vector<ULONG>&) const;
 
 	void SetBasePriority(int priority);
+	bool SetCPUSet(ULONG* set, ULONG count);
+
 	int GetCPU() const {
 		return _cpuConsumption;
 	}

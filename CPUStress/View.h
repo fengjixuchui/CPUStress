@@ -43,7 +43,7 @@ public:
 		CHAIN_MSG_MAP_ALT(CVirtualListView, 1)
 		CHAIN_MSG_MAP_ALT(CCustomDraw<CView>, 1)
 
-		ALT_MSG_MAP(2)
+	ALT_MSG_MAP(2)
 		COMMAND_ID_HANDLER(ID_VIEW_REFRESH, OnRefresh)
 		COMMAND_RANGE_HANDLER(ID_ACTIVITY_LOW, ID_ACTIVITY_MAXIMUM, OnThreadActivity)
 		COMMAND_RANGE_HANDLER(ID_PRIORITY_IDLE, ID_PRIORITY_TIMECRITICAL, OnSetThreadPriority)
@@ -59,6 +59,8 @@ public:
 		COMMAND_ID_HANDLER(ID_PROCESS_AFFINITY, OnProcessAffinity)
 		COMMAND_ID_HANDLER(ID_THREAD_AFFINITY, OnThreadAffinity)
 		COMMAND_ID_HANDLER(ID_THREAD_IDEALCPU, OnThreadIdealCPU)
+		COMMAND_ID_HANDLER(ID_THREAD_SELECTEDCPUSETS, OnThreadSelectedCPUset)
+		COMMAND_ID_HANDLER(ID_THREAD_CREATE4THREADS, On4NewThread)
 	END_MSG_MAP()
 
 private:
@@ -81,6 +83,7 @@ private:
 	LRESULT OnItemChanged(int /*idCtrl*/, LPNMHDR /*pnmh*/, BOOL& /*bHandled*/);
 	LRESULT OnThreadActivity(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnNewThread(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
+	LRESULT On4NewThread(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnThreadResume(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnThreadSuspend(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnThreadKill(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
@@ -93,6 +96,7 @@ private:
 	LRESULT OnProcessAffinity(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnThreadAffinity(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnThreadIdealCPU(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
+	LRESULT OnThreadSelectedCPUset(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 
 	// Handler prototypes (uncomment arguments if needed):
 	//	LRESULT MessageHandler(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
